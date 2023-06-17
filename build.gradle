@@ -10,6 +10,24 @@ buildscript {
     }
 }
 
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.22'
+    id "com.gradle.enterprise" version "3.13.3"
+}
+
+gradleEnterprise {
+    // configuration
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+    }
+    publishAlways()
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
 allprojects {
     repositories {
         google()
@@ -17,6 +35,4 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+
